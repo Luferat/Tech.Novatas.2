@@ -1,14 +1,14 @@
 <?php
 
 // Importa a configuração do site:
-require('includes/config.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_config.php');
 
 /***************************************************
  * Todos os códigos PHP desta página INICIAM aqui! *
  ***************************************************/
 
  // Define o título do documento:
-$page_title = 'Faça contato';
+$page_title = 'Página modelo';
 
 // Define o conteúdo da página:
 $page_content = "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat id repellat unde vitae corrupti in laudantium pariatur possimus exercitationem inventore rerum praesentium quis veniam incidunt dolorum, animi accusamus itaque iusto.</p>";
@@ -18,7 +18,7 @@ $page_content = "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fug
  ****************************************************/
 
 // Cabeçalho da página HTML:
-require('header.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_header.php');
 
 /******************************************************
  * Todo código HTML visível desta página COMEÇA aqui! *
@@ -34,5 +34,5 @@ require('header.php');
  *******************************************************/
 
 // Rodapé da página HTML:
-require('footer.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_footer.php');
 ?>

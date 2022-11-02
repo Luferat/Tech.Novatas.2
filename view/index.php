@@ -1,7 +1,7 @@
 <?php
 
 // Importa a configuração do site:
-require('includes/config.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_config.php');
 
 /***************************************************
  * Todos os códigos PHP desta página INICIAM aqui! *
@@ -13,7 +13,7 @@ $id = intval($_SERVER['QUERY_STRING']);
 // Se o ID é ZERO...
 if ($id == 0)
     // Mostra a página 404:
-    header('Location: /404.php');
+    header('Location: /404');
 
 // SQL que otém o artigo completo:
 $sql = <<<SQL
@@ -46,7 +46,7 @@ $res = $conn->query($sql);
 // Se não achou o artigo...
 if ($res->num_rows != 1)
     // Mostra a página 404:
-    header('Location: /404.php');
+    header('Location: /404');
 
 // Extrai os dados do artigo:
 $art = $res->fetch_assoc();
@@ -135,7 +135,7 @@ $page_title = $art['title'];
  ****************************************************/
 
 // Cabeçalho da página HTML:
-require('header.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_header.php');
 
 /******************************************************
  * Todo código HTML visível desta página COMEÇA aqui! *
@@ -150,5 +150,5 @@ require('header.php');
  *******************************************************/
 
 // Rodapé da página HTML:
-require('footer.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_footer.php');
 ?>

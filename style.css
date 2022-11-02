@@ -1,0 +1,162 @@
+@import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css');
+
+* {
+    box-sizing: border-box;
+    outline: none;
+}
+
+HTML, body, #wrap {
+    position: relative;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+}
+
+html, body {
+    font-family: roboto, sans-serif;
+    font-size: 16px;
+}
+
+body {
+    background-color: black;
+}
+
+a {
+    text-decoration: none;
+    color: steelblue;
+}
+
+a:hover {
+    color: orangered;
+}
+
+#wrap {
+    display: flex;
+    flex-direction: column;
+    max-width: 1024px;
+    margin: auto;
+    padding: 0 .5rem;
+}
+
+#wrap>header {
+    display: flex;
+    align-items: center;
+}
+
+#wrap>header i {
+    color: white;
+    font-size: 3.6rem;
+}
+
+#wrap>header h1 {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 0.5rem 0.5rem 0.5rem;
+    cursor: pointer;
+}
+
+#wrap>header .tech {
+    -webkit-text-stroke: .001rem orangered;
+    font-size: 2.5rem;
+}
+
+#wrap>header .dot {
+    -webkit-text-stroke: 0 orange;
+    color: rgb(107, 107, 253);
+    font-size: 3rem;
+}
+
+#wrap>header .novatas {
+    color: orange;
+    font-size: 1.6rem;
+    margin-top: -.5rem;
+}
+
+#wrap>nav {
+    background-color: orange;
+    border-radius: .5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: .5rem;
+}
+
+#wrap>nav a {
+    padding: 1rem;
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+#wrap>nav a:hover {
+    background-color: white;
+    color: orange;
+}
+
+#wrap>main {
+    flex-grow: 1;
+    background-color: white;
+    border-radius: .5rem;
+    padding: 0 1rem;
+}
+
+#wrap>main>h2:first-child {
+    margin: 0;
+    padding: .8rem;
+    background-color: rgb(214, 214, 214);
+    margin: 0 -1rem;
+    border-radius: .5rem .5rem 0 0;
+    font-size: 1.5rem;
+}
+
+#wrap>footer {
+    display: flex;
+    flex-direction: column;
+    color: white;
+    padding: 1rem;
+    align-items: center;
+}
+
+#wrap>footer a {
+    color: orange;
+    text-decoration: none;
+    letter-spacing: .05rem;
+}
+
+#wrap>footer a:hover {
+    color: rgb(255, 204, 110);
+}
+
+/**
+ * Estilos exclusivos da "/index.php":
+ **/
+
+.artbox {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(255, 166, 0, .3);
+    border-radius: .5rem;
+    cursor: pointer;
+}
+
+.artbox:hover {
+    background-color: rgba(255, 166, 0, .2);
+}
+
+.artbox img {
+    border-radius: .5rem .5rem 0 0;
+}
+
+.artbox:last-child {
+    margin-bottom: 1rem;
+}
+
+.artbox>h3, .artbox>span {
+    margin: .5rem;
+}

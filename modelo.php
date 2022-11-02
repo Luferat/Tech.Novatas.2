@@ -1,7 +1,7 @@
 <?php
 
 // Importa a configuração do site:
-require('includes/config.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_config.php');
 
 /***************************************************
  * Todos os códigos PHP desta página INICIAM aqui! *
@@ -18,7 +18,7 @@ $page_content = "<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fug
  ****************************************************/
 
 // Cabeçalho da página HTML:
-require('header.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_header.php');
 
 /******************************************************
  * Todo código HTML visível desta página COMEÇA aqui! *
@@ -34,5 +34,5 @@ require('header.php');
  *******************************************************/
 
 // Rodapé da página HTML:
-require('footer.php');
+require($_SERVER['DOCUMENT_ROOT'] . '//includes/_footer.php');
 ?>

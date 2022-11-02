@@ -1,7 +1,7 @@
 <?php
 
 // Importa a configuração do site:
-require('includes/config.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_config.php');
 
 /***************************************************
  * Todos os códigos PHP desta página INICIAM aqui! *
@@ -43,12 +43,11 @@ else :
         // Formata a lista dos artigos e concatena em $page_content:
         $page_content .= <<<HTML
 
-<div>
+<div class="artbox" onclick="location.href='/view/?{$art['aid']}'">
     <img src="{$art['thumbnail']}" alt="{$art['title']}">
-    <h3><a href="/view.php?{$art['aid']}">{$art['title']}</a></h3>
-    {$art['resume']}
+    <h3>{$art['title']}</h3>
+    <span>{$art['resume']}</span>
 </div>
-<p>------------------------</p>
 
 HTML;
 
@@ -65,7 +64,7 @@ $page_title = 'Artigos recentes';
  ****************************************************/
 
 // Cabeçalho da página HTML:
-require('header.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_header.php');
 
 /******************************************************
  * Todo código HTML visível desta página COMEÇA aqui! *
@@ -81,5 +80,5 @@ require('header.php');
  *******************************************************/
 
 // Rodapé da página HTML:
-require('footer.php');
+require($_SERVER['DOCUMENT_ROOT'] . '/includes/_footer.php');
 ?>
