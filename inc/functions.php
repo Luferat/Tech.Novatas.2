@@ -1,9 +1,9 @@
 <?php
 
-/*******************************************************************
- * Funções de uso geral.                                           *
- * Essas funções podem ser usadas em qualquer parte do aplicativo. *
- *******************************************************************/
+/**
+ * Funções de uso geral.
+ * Essas funções podem ser usadas em qualquer parte do aplicativo.
+ **/
 
 // Função para DEBUG:
 function debug($variable, $exit = true, $dump = false)

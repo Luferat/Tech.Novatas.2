@@ -2,58 +2,55 @@
 -- Isso é útil em "tempo de desenvolvimento".
 -- Quando o aplicativo estiver pronto, isso NUNCA deve ser usado.
 DROP DATABASE IF EXISTS technovatas;
-
 -- Recria o banco de dados:
--- CHARACTER SET utf8 especifica que o banco de dados use a tabela UTF-8.
--- COLLATE utf8_general_ci especifica que as buscas serão "case-insensitive".
+-- 'CHARACTER SET utf8' especifica que o banco de dados use a tabela UTF-8.
+-- 'COLLATE utf8_general_ci' especifica que as buscas serão "case-insensitive".
 CREATE DATABASE technovatas CHARACTER SET utf8 COLLATE utf8_general_ci;
-
 -- Seleciona banco de dados:
--- Todas as ações seguintes se referem a este banco de dados, até que outro
--- "USE nomedodb" seja encontrado.
+-- Todas as ações seguintes se referem a este banco de dados.
 USE technovatas;
-
 -- Cria a tabela users:
 CREATE TABLE users (
-
-    -- O campo id (PK → Primary Key) é usado para identificar cada registro 
-    -- como único. Ele não pode ter valores repetidos.
-    -- A opção AUTO_INCREMENT força que o próprio MySQL incremente o id.
+    -- O campo id (PK → Primary Key → Chave Primária) é usado para identificar 
+    -- cada registro (linha) como único. Ele NÃO pode ter valores repetidos.
+    -- A opção AUTO_INCREMENT força que o próprio MySQL incremente o valor 
+    -- deste campo.
     uid INT PRIMARY KEY AUTO_INCREMENT,
-
-    -- A data do cadastro está no fomrato TIMESTAMP (AAAA-MM-DD HH:II:SS).
+    -- A data do cadastro está no formato TIMESTAMP (AAAA-MM-DD HH:II:SS).
     -- Só funciona com datas à partir de 01/01/1970 (Unix timestamp).
-    -- DEFAULT especifica um valor padrão para o campo, durante a inserção.
-    -- CURRENT_TIMESTAMP insere a data atual do sistema neste campo.
+    -- 'DEFAULT' especifica um valor padrão para o campo, durante a inserção.
+    -- 'CURRENT_TIMESTAMP' insere a data atual do sistema neste campo.
     udate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-
-    -- NOT NULL especifica que este campo precisa de um valor.
+    -- Os campos seguintes são do tipo VARCHAR(n), o mesmo que "string" e o 
+    -- valor entre parênteses (n) é o número máximo de caracteres suportados 
+    -- pelo campo. "n" vai de 1 à 255.
+    -- 'NOT NULL' especifica que este campo precisa de um valor, não pode ficar
+    -- vazio.
     name VARCHAR(255) NOT NULL,
     email VARCHAR(255) NOT NULL,
     password VARCHAR(255) NOT NULL,
     photo VARCHAR(255),
-
     -- Formato do tipo DATE → AAAA-MM-DD.
     birth DATE,
-
     -- O tipo TEXT aceita strings de até 65.536 caracteres. 
     bio TEXT,
-
     -- O tipo ENUM(lista) só aceita um dos valores de "lista".
-    -- DEFAULT especifica um valor padrão para o campo, durante a inserção.
-    -- Neste caso, DEFAULT deve ter um avalor presente na lista de ENUM.
+    -- 'DEFAULT' especifica um valor padrão para o campo, durante a inserção.
+    -- Neste caso, DEFAULT deve ser um valor presente na lista de ENUM.
     type ENUM('admin', 'author', 'moderator', 'user') DEFAULT 'user',
-
     -- Formato do tipo DATETIME → AAAA-MM-DD HH:II:SS.
-    -- DATETIME pode ser NULL, já TIMESTAMP não pode.
+    -- DATETIME pode ser NULL, já TIMESTAMP (acima) não pode.
     last_login DATETIME,
+    -- O campo 'status' controla a situação atual do registro (linha) 
+    -- permitindo "desativar" ('offline') ou "apagar" ('deleted') um usuário 
+    -- sem removê-lo realmente do sistema.
     ustatus ENUM('online', 'offline', 'deleted') DEFAULT 'online'
 );
-
 -- Cadastra alguns usuários para testes:
 INSERT INTO users (
         -- Listamos somente os campos onde queremos inserir dados.
-        -- Os outros campos já inserem automaticamente, valores padrão (DEFAULT).
+        -- Os outros campos já inserem automaticamente os valores padrão 
+        -- configurados em 'DEFAULT'.
         uid,
         name,
         email,
@@ -70,24 +67,19 @@ VALUES (
         '1',
         'Joca da Silva',
         'joca@silva.com',
-
         -- A senha será criptografada pela função SHA1 antes de ser inserida.
         SHA1('senha123'),
-
         -- Não vamos inserir a imagem diretamente no banco de dados.
-        -- Buscamos a imagem pela URL dela.
+        -- Buscamos a imagem pela URL dela, e armazenamos a URL do banco.
         'https://randomuser.me/api/portraits/men/14.jpg',
-
         -- Lembre-se de sempre inserir datas e números no formato correto.
         '1990-12-14',
         'Pintor, programador, escultor e enrolador.',
-
         -- O campo "type" é do tipo ENUM e aceita somente os valores da lista.
         'author'
     ),
-
-    -- Para inserir um novo registro, basta adicionar vírgula no final do anterior
-    -- e inserir os dados, sem repetir a query inteira.
+    -- Para inserir um novo registro, basta adicionar vírgula no final do 
+    -- anterior e inserir os dados, sem repetir a query inteira.
     -- Dependendo do sistema, pode haver algum limite máximo para o tamanho 
     -- da query, portanto, evite repetir este processo muitas vezes.
     (
@@ -131,7 +123,6 @@ CREATE TABLE articles (
     resume VARCHAR(255) NOT NULL,
     astatus ENUM('online', 'offline', 'deleted') DEFAULT 'online',
     views INT DEFAULT 0,
-
     -- Define author como chave estrangeira.
     -- Isso faz com que a tabela "articles" seja dependente da tabela "users"
     -- para receber valores.
@@ -139,7 +130,6 @@ CREATE TABLE articles (
     -- usado no campo "author" da tabela "articles".
     FOREIGN KEY (author) REFERENCES users (uid)
 );
-
 -- Insere alguns artigos para testes:
 INSERT INTO articles (
         author,
@@ -190,7 +180,6 @@ VALUES (
         'https://picsum.photos/203',
         'Conheça os melhores equipamentos para cortar sua grama de forma elegante e moderna.'
     );
-
 -- Cria a tabela "comments":
 CREATE TABLE comments (
     cid INT PRIMARY KEY AUTO_INCREMENT,
@@ -202,49 +191,48 @@ CREATE TABLE comments (
     FOREIGN KEY (cauthor) REFERENCES users (uid),
     FOREIGN KEY (article) REFERENCES articles (aid)
 );
-
 -- Insere alguns comentários para testes:
-INSERT INTO comments (
-    cauthor,
-    article,
-    comment
-) VALUES (
-    '1',
-    '2',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
-), (
-    '2',
-    '2',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
-), (
-    '4',
-    '2',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
-), (
-    '3',
-    '2',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
-), (
-    '2',
-    '6',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
-), (
-    '2',
-    '3',
-    'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
-);
-
+INSERT INTO comments (cauthor, article, comment)
+VALUES (
+        '1',
+        '2',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
+    ),
+    (
+        '2',
+        '2',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
+    ),
+    (
+        '4',
+        '2',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
+    ),
+    (
+        '3',
+        '2',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
+    ),
+    (
+        '2',
+        '6',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
+    ),
+    (
+        '2',
+        '3',
+        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nemo quia provident reiciendis earum, tenetur reprehenderit iure ipsum.'
+    );
 -- Cria a tabela "contacts":
 CREATE TABLE contacts (
-  id INT(11) PRIMARY KEY AUTO_INCREMENT,
-  date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  name VARCHAR(255) NOT NULL,
-  email VARCHAR(255) NOT NULL,
-  subject VARCHAR(255) NOT NULL,
-  message TEXT NOT NULL,
-  status ENUM ('sended','readed','responded','deleted') DEFAULT 'sended'
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    name VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    subject VARCHAR(255) NOT NULL,
+    message TEXT NOT NULL,
+    status ENUM ('sended', 'readed', 'responded', 'deleted') DEFAULT 'sended'
 );
-
 -- CRIANDO E TESTANDO:
 -- Selecione todo este conteúdo teclando [Ctrl]+[A];
 -- Copie o conteúdo para a área de transferência teclando [Ctrl]+[C];
@@ -252,7 +240,7 @@ CREATE TABLE contacts (
 -- Clique na guia [SQL] na porção esquerda;
 -- Cole o código no campo, teclando [Ctrl]+[V];
 -- Verifique se ocorreram erros de sintaxe.
---     Aparece um "X" dentro de uma bola vermelha.
+--     Aparece um "X" dentro de uma bola vermelha quando ocorrem.
 -- Clique no botão [Continuar] que está logo abaixo;
 -- Verifique se não ocorrem erros.
 -- Atualize a página para ver se o banco foi corretamente criado, juntamente

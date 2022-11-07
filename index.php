@@ -1,9 +1,3 @@
-<?php
-
-// Importa configurações e funções:
-require('inc/config.php');
-
-?>
 <!DOCTYPE html>
 
 <!-- Referências: https://www.w3schools.com/html/ -->
@@ -21,20 +15,20 @@ require('inc/config.php');
     <!-- Deixa a página responsiva -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Carrega a folha de estilos do aplicativo -->
+    <!-- Carrega a folha de estilos do template -->
     <link rel="stylesheet" href="/style.css">
 
     <!-- Ícone de favoritos -->
-    <link rel="shortcut icon" href="<?php echo $c['favicon'] ?>">
+    <link rel="shortcut icon" href="/img/favicon.png">
 
     <!-- Título do documento -->
-    <title><?php echo $c['sitename'] ?></title>
+    <title>Tech.Novatas ·:· Toda mulher é capaz de tudo, inclusive programar.</title>
 
 </head>
 
 <body>
 
-    <!-- Âncora de retorno -->
+    <!-- Âncora de retorno ao topo da página -->
     <a id="top"></a>
 
     <!-- Wrap da página -->
@@ -45,13 +39,13 @@ require('inc/config.php');
 
             <!-- Logotipo usando Font Awesome -->
             <a href="/" title="Página inicial">
-                <img src="<?php echo $c['sitelogo'] ?>" alt="Logotipo de <?php echo $c['sitename'] ?>">
+                <img src="/img/logo01.png" alt="Logotipo de Tech.Novatas">
             </a>
 
             <!-- Nome / slogan do site -->
             <h1>
-                <?php echo $c['sitename'] ?>
-                <span><?php echo $c['siteslogan'] ?></span>
+                Tech.Novatas
+                <span>Toda mulher é capaz de tudo, inclusive programar.</span>
             </h1>
         </header>
 
@@ -102,9 +96,9 @@ require('inc/config.php');
                 </a>
 
                 <!-- Licença do aplicativo -->
-                <div>&copy; 2022 <?php echo $c['sitename'] ?></div>
+                <div>&copy; 2022 Tech.Novatas</div>
 
-                <!-- Link para o topo desta página -->
+                <!-- Link para o topo desta página → <a id="top"></a> -->
                 <a href="#top">
                     <i class="fa-fw fa-solid fa-circle-up"></i>
                 </a>
