@@ -1,64 +1,7 @@
 <?php
 
 // Importa configurações e funções:
-require('includes/config.php');
-
-// Obtém o endereço da página a ser acessada:
-$route = mb_strtolower(htmlentities(trim($_SERVER['QUERY_STRING'])));
-
-// Se não selecionou uma página, carrega a página inicial:
-if ($route == '') $route = 'home';
-
-// Caminho das páginas:
-$path = $_SERVER['DOCUMENT_ROOT'];
-
-// Dados da página que está sendo acessada:
-$page = array(
-    'php' => "pages/{$route}/index.php",
-    'css' => "pages/{$route}/index.css",
-    'js' => "pages/{$route}/index.js"
-);
-
-// Se a página não existe, exibe a página de erro 404:
-if (!file_exists($page['php'])) :
-    $page = array(
-        'php' => "pages/404/index.php",
-        'css' => "pages/404/index.css",
-        'js' => "pages/404/index.js"
-    );
-endif;
-
-// Carrega o PHP/HTML da página correta:
-require($page['php']);
-
-// Carrega o CSS da página correta caso exista:
-if (file_exists($page['css']))
-    $page_css = "<link rel=\"stylesheet\" href=\"/{$page['css']}\">";
-
-// Carrega o JavaScript da página correta caso exista:
-if (file_exists($page['js']))
-    $page_js = "<script src=\"/{$page['js']}\"></script>";
-
-// Processa o título da página:
-
-
-// Monta links para as redes sociais no rodapé:
-$social_nav = "<nav><h4>Redes sociais:</h4>";
-
-for ($i = 0; $i < count($social); $i++) :
-
-    $social_nav .= <<<HTML
-
-<a href="{$social[$i]['link']}" target="_blank">
-    <i class="fa-brands {$social[$i]['icon']} fa-fw"></i>
-    <span>{$social[$i]['name']}</span>
-</a>
-
-HTML;
-
-endfor;
-
-$social_nav .= '</nav>';
+require('inc/config.php');
 
 ?>
 <!DOCTYPE html>
@@ -80,11 +23,6 @@ $social_nav .= '</nav>';
 
     <!-- Carrega a folha de estilos do aplicativo -->
     <link rel="stylesheet" href="/style.css">
-
-    <?php
-    // Carrega CSS de uma página específica:
-    echo $page_css;
-    ?>
 
     <!-- Ícone de favoritos -->
     <link rel="shortcut icon" href="<?php echo $c['favicon'] ?>">
@@ -139,7 +77,19 @@ $social_nav .= '</nav>';
 
         </nav>
 
-        <main id="content"><?php echo $content ?></main>
+        <main>
+
+            <article>
+                <h2>Conteúdo</h2>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum dolorem animi dicta maxime optio a quae ad voluptas officia nisi nam nihil, cumque reprehenderit amet ipsa et dolorum, suscipit labore!</p>
+            </article>
+
+            <aside>
+                <h3>Complementos</h3>
+                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque eius iste id accusantium sint assumenda ea.</p>
+            </aside>
+
+        </main>
 
         <!-- Rodapé -->
         <footer>
@@ -163,10 +113,25 @@ $social_nav .= '</nav>';
 
             <div id="fbottom">
 
-                <?php
-                // Exibe a lista de redes sociais já formatada para o rodapé.
-                echo $social_nav;
-                ?>
+                <nav>
+                    <h4>Redes sociais:</h4>
+
+                    <a href="https://facebook.com/Tech.Novatas" target="_blank" title="Acesse nosso Facebook">
+                        <i class="fa-brands fa-square-facebook fa-fw"></i>
+                        <span>Facebook</span>
+                    </a>
+
+                    <a href="https://youtube.com/Tech.Novatas" target="_blank" title="Acesse nosso Youtube">
+                        <i class="fa-brands fa-square-youtube fa-fw"></i>
+                        <span>Youtube</span>
+                    </a>
+
+                    <a href="https://github.com/Tech.Novatas" target="_blank" title="Acesse nosso GitHub">
+                        <i class="fa-brands fa-square-github fa-fw"></i>
+                        <span>GitHub</span>
+                    </a>
+
+                </nav>
 
                 <nav>
 
@@ -200,11 +165,6 @@ $social_nav .= '</nav>';
 
     <!-- Carrega o JavaScript do aplicativo -->
     <script src="/script.js"></script>
-
-    <?php
-    // Carrega JavaScript de uma página específica:
-    echo $page_js;
-    ?>
 
 </body>
 

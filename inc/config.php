@@ -5,29 +5,7 @@ $c = array(
     'sitename' => 'Tech.Novatas',
     'siteslogan' => 'Toda mulher é capaz de tudo, inclusive programar.',
     'sitelogo' => '/img/logo01.png',
-    'favicon' => '/img/logo01.png'
-);
-
-// Conponentes de cada página:
-$page_css = $page_js = $pagename = '';
-
-// Redes sociais:
-$social = array(
-    array( // [0]
-        'name' => 'Facebook',
-        'link' => 'https://facebook.com/Tech.Novatas',
-        'icon' => 'fa-facebook'
-    ),
-    array( // [1]
-        'name' => 'Youtube',
-        'link' => 'https://youtube.com/Tech.Novatas',
-        'icon' => 'fa-youtube'
-    ),
-    array( // [2]
-        'name' => 'GitHub',
-        'link' => 'https://github.com/Tech.Novatas',
-        'icon' => 'fa-github'
-    )
+    'favicon' => '/img/favicon.png'
 );
 
 // Dados para conexão com MySQL/MariaDB e database:
