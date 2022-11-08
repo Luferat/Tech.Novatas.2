@@ -1,3 +1,9 @@
+<?php
+
+// Importa as configurações do site:
+require('inc/config.php');
+
+?>
 <!DOCTYPE html>
 
 <!-- Referências: https://www.w3schools.com/html/ -->
@@ -19,10 +25,10 @@
     <link rel="stylesheet" href="/style.css">
 
     <!-- Ícone de favoritos -->
-    <link rel="shortcut icon" href="/img/favicon.png">
+    <link rel="shortcut icon" href="<?php echo $c['favicon'] ?>">
 
     <!-- Título do documento -->
-    <title>Tech.Novatas ·:· Toda mulher é capaz de tudo, inclusive programar.</title>
+    <title><?php echo $c['sitename'] ?> ·:· <?php echo $c['siteslogan'] ?></title>
 
 </head>
 
@@ -39,13 +45,13 @@
 
             <!-- Logotipo usando Font Awesome -->
             <a href="/" title="Página inicial">
-                <img src="/img/logo01.png" alt="Logotipo de Tech.Novatas">
+                <img src="<?php echo $c['sitelogo'] ?>" alt="Logotipo de <?php echo $c['sitename'] ?>">
             </a>
 
             <!-- Nome / slogan do site -->
             <h1>
-                Tech.Novatas
-                <span>Toda mulher é capaz de tudo, inclusive programar.</span>
+                <?php echo $c['sitename'] ?>
+                <span><?php echo $c['siteslogan'] ?></span>
             </h1>
         </header>
 
@@ -96,7 +102,7 @@
                 </a>
 
                 <!-- Licença do aplicativo -->
-                <div>&copy; 2022 Tech.Novatas</div>
+                <div>&copy; 2022 <?php echo $c['sitename'] ?></div>
 
                 <!-- Link para o topo desta página → <a id="top"></a> -->
                 <a href="#top">
