@@ -65,7 +65,7 @@ VALUES (
         -- Muito cuidado com a ordem e a quantidade de dados,
         -- elas devem coincidir com os campos acima.
         '1',
-        'Joca da Silva',
+        'Joca da Silva de Souza',
         'joca@silva.com',
         -- A senha será criptografada pela função SHA1 antes de ser inserida.
         SHA1('senha123'),
@@ -240,7 +240,7 @@ CREATE TABLE contacts (
 -- Clique na guia [SQL] na porção esquerda;
 -- Cole o código no campo, teclando [Ctrl]+[V];
 -- Verifique se ocorreram erros de sintaxe.
---     Aparece um "X" dentro de uma bola vermelha quando ocorrem.
+-- Aparece um "X" dentro de uma bola vermelha quando ocorrem.
 -- Clique no botão [Continuar] que está logo abaixo;
 -- Verifique se não ocorrem erros.
 -- Atualize a página para ver se o banco foi corretamente criado, juntamente

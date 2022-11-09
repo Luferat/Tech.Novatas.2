@@ -16,7 +16,8 @@ $c = array(
     'sitename' => 'Tech.Novatas',
     'siteslogan' => 'Toda mulher é capaz de tudo, inclusive programar.',
     'sitelogo' => '/img/logo01.png',
-    'favicon' => '/img/favicon.png'
+    'favicon' => '/img/favicon.png',
+    'sitecss' => '/style.css'
 );
 
 /**

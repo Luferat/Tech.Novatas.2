@@ -22,7 +22,7 @@ require('inc/config.php');
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Carrega a folha de estilos do template -->
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="<?php echo $c['sitecss'] ?>">
 
     <!-- Ícone de favoritos -->
     <link rel="shortcut icon" href="<?php echo $c['favicon'] ?>">
@@ -43,7 +43,7 @@ require('inc/config.php');
         <!-- Cabeçalho -->
         <header>
 
-            <!-- Logotipo usando Font Awesome -->
+            <!-- Logotipo -->
             <a href="/" title="Página inicial">
                 <img src="<?php echo $c['sitelogo'] ?>" alt="Logotipo de <?php echo $c['sitename'] ?>">
             </a>
