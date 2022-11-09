@@ -233,6 +233,22 @@ CREATE TABLE contacts (
     message TEXT NOT NULL,
     status ENUM ('sended', 'readed', 'responded', 'deleted') DEFAULT 'sended'
 );
+-- Cria a tabela "config":
+CREATE TABLE config (
+    id INT(11) PRIMARY KEY AUTO_INCREMENT,
+    var VARCHAR(127) NOT NULL,
+    val LONGTEXT NOT NULL
+);
+-- Insere dados na tabela "config":
+INSERT INTO config (var, val)
+VALUES ('sitename', 'Tech.Novatas'),
+    (
+        'siteslogan',
+        'Toda mulher é capaz de tudo, inclusive programar.'
+    ),
+    ('sitelogo', '/img/logo01.png'),
+    ('favicon', '/img/favicon.png'),
+    ('sitecss', '/style.css');
 -- CRIANDO E TESTANDO:
 -- Selecione todo este conteúdo teclando [Ctrl]+[A];
 -- Copie o conteúdo para a área de transferência teclando [Ctrl]+[C];

@@ -7,7 +7,7 @@
  **/
 
 /**
- * A coleção $c[] contém diversas configurações iniciais dos site.
+ * A coleção $c[] contém diversas configurações iniciais do site.
  * Esta variável e suas chaves definem algumas configurações de personalização 
  * do site como nome, logotipo e outros itens. Você pode/deve adicionar outros
  * itens aqui, conforme sua necessidade e vontade.
