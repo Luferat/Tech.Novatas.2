@@ -3,6 +3,69 @@
 // Importa o arquivo de configurações do site:
 require('inc/config.php');
 
+// Obtém a rotaq da página a ser exibida e armazena em '$route':
+$route = htmlspecialchars(trim($_SERVER['QUERY_STRING']));
+
+// Se '$route' está vazia, ou seja, não especificou uma rota...
+if ($route == '') :
+
+    // A página inicial será carregada:
+    $route = 'home';
+
+endif;
+
+// Monta os caminhos para os componentes da rota:
+$page = array(
+    "php" => "pages/{$route}/index.php",
+    "css" => "pages/{$route}/style.css",
+    "js" => "pages/{$route}/script.js"
+);
+
+// Se a rota NÃO aponta para uma página...
+if (!file_exists($page['php'])) :
+
+    // Aponta $page para a página de erro 404:
+    $page = array(
+        "php" => "pages/404/index.php",
+        "css" => "pages/404/style.css",
+        "js" => "pages/404/script.js"
+    );
+
+endif;
+
+// Carrega o componente PHP da rota:
+require($page['php']);
+
+// Se o arquivo CSS da rota existe...
+if (file_exists($page['css'])) :
+
+    // Cria a tag que carrefga o CSS na '/index.php':
+    $page_css = "<link rel=\"stylesheet\" href=\"/{$page['css']}\">";
+
+endif;
+
+// Se o arquivo JavaScript da rota existe...
+if (file_exists($page['js'])) :
+
+    // Cria a tag que carrefga o JavaSCript na '/index.php':
+    $page_js = "<script src=\"/{$page['js']}\"></script>";
+
+endif;
+
+// Se definiu um titulo para a página → <title>...</title>
+if ($page_title != '') :
+
+    // A tag <title> conterá o título da página:
+    $tag_title = "{$c['sitename']} ·:· {$page_title}";
+
+// Se não definiu um título...
+else :
+
+    // A tag <title> conterá o slogan do site:
+    $tag_title = "{$c['sitename']} ·:· {$c['siteslogan']}";
+
+endif;
+
 ?>
 <!DOCTYPE html>
 
@@ -24,11 +87,16 @@ require('inc/config.php');
     <!-- Carrega a folha de estilos do template -->
     <link rel="stylesheet" href="<?php echo $c['sitecss'] ?>">
 
+    <?php
+    // Carrega a folha de estilos da rota, se existir:
+    echo $page_css;
+    ?>
+
     <!-- Ícone de favoritos -->
     <link rel="shortcut icon" href="<?php echo $c['favicon'] ?>">
 
     <!-- Título do documento -->
-    <title><?php echo $c['sitename'] ?> ·:· <?php echo $c['siteslogan'] ?></title>
+    <title><?php echo $tag_title ?></title>
 
 </head>
 
@@ -77,19 +145,7 @@ require('inc/config.php');
 
         </nav>
 
-        <main>
-
-            <article>
-                <h2>Conteúdo</h2>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Earum dolorem animi dicta maxime optio a quae ad voluptas officia nisi nam nihil, cumque reprehenderit amet ipsa et dolorum, suscipit labore!</p>
-            </article>
-
-            <aside>
-                <h3>Complementos</h3>
-                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque eius iste id accusantium sint assumenda ea.</p>
-            </aside>
-
-        </main>
+        <main><?php echo $page_content ?></main>
 
         <!-- Rodapé -->
         <footer>
@@ -165,6 +221,11 @@ require('inc/config.php');
 
     <!-- Carrega o JavaScript do aplicativo -->
     <script src="/script.js"></script>
+
+    <?php
+    // Insere o JavaScript da rota, caso exista:
+    echo $page_js;
+    ?>
 
 </body>
 

@@ -31,6 +31,13 @@ $username = 'root';
 $password = '';
 $database = 'technovatas';
 
+/**
+ * Variáveis do aplicativo:
+ * Todas as variáveis importantes para o aplicativo funcionar devem ser criadas
+ * e definidas aqui.
+ **/
+$page_title = $page_content = $page_css = $page_js = $tag_title = '';
+
 // Define a tabela de caracteres para UTF-8:
 header('Content-Type: text/html; charset=utf-8');
 
